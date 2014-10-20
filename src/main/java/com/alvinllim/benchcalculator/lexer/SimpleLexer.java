@@ -97,8 +97,8 @@ public class SimpleLexer implements Lexer {
 				getNextCharacter();
 				numberSB.append(currentCharacter);
 			}
-			//a number can only be followed by a whitespace, a number operator, a closing parenthesis, or an EOF character
-			if (!isWhitespace(nextCharacter) && !isNumberOperator(nextCharacter) && nextCharacter != ')' && !isEOF(nextCharacter)) {
+			//a number can only be followed by a whitespace, a number operator, or an EOF character
+			if (!isWhitespace(nextCharacter) && !isNumberOperator(nextCharacter) && !isEOF(nextCharacter)) {
 				throw new LexerException(nextCharacter, scanner.getCurrentIndex()+1);
 			} else {
 				return new Token(numberSB.toString(), TokenType.NUMBER, scanner.getCurrentIndex());

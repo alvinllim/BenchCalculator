@@ -85,7 +85,8 @@ public class TestSimpleLexer {
 		return new Object[][] {
 				new Object[]{"123abc"},
 				new Object[]{"123(456)"},
-				new Object[]{"123^2"}
+				new Object[]{"123^2"},
+				new Object[]{"123)"}
 		};
 	}
 
@@ -94,7 +95,7 @@ public class TestSimpleLexer {
 		SimpleLexer lexer = new SimpleLexer(new InputStringScanner(input));
 		lexer.getNextCharacter();
 		Token token = lexer.getNumber();
-		Assert.assertNull(token);
+		Assert.fail("LexerException should have been thrown, instead the following token was retrieved: "+token);
 	}
 
 	@DataProvider(name="dpNumberOperator")
